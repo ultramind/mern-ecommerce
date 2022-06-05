@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import data from '../data'
 import axios from 'axios'
 import logger from 'use-reducer-logger'
 
