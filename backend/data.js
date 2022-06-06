@@ -30,7 +30,7 @@ const data = {
       category: 'Trousers',
       images: '/images/p3.jpg',
       price: 200,
-      countInStock: 8,
+      countInStock: 0,
       brand: 'Boss',
       rating: 4.3,
       numReviews: 10,
@@ -59,8 +59,8 @@ const data = {
       rating: 4.7,
       numReviews: 42,
       description: 'High quality shirt'
-    },
+    }
   ]
 }
 
-export default data;
+export default data
