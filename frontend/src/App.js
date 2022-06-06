@@ -4,10 +4,14 @@ import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
+import { Helmet } from 'react-helmet-async'
 
 function App () {
   return (
     <BrowserRouter>
+      <Helmet>
+        <title>Amazona</title>
+      </Helmet>
       <div className='d-flex flex-column site-container'>
         <header className='header'>
           <Navbar bg='dark' variant='dark'>

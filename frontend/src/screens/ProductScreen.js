@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Badge from 'react-bootstrap/Badge'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Rating from '../components/Rating'
+import { Helmet } from 'react-helmet-async'
 
 // creating a reducer function to handle the fetching one product
 const reducer = (state, action) => {
@@ -51,6 +52,9 @@ const ProductScreen = () => {
   ) : (
     <div className='mt-4'>
       <Row>
+        <Helmet>
+          <title>{product.name}</title>
+        </Helmet>
         <Col md={5}>
           <img className='img-large' src={product.images} alt={product.name} />
         </Col>
