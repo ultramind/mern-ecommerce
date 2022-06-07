@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -27,6 +27,7 @@ const reducer = (state, action) => {
 }
 
 const ProductScreen = () => {
+  const navigate = useNavigate()
   // initializing contex
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const { cart } = state
@@ -55,7 +56,6 @@ const ProductScreen = () => {
 
   // Add to cart function
   const addToCart = async () => {
-  
     // checnking if item exits
     const exitsItem = cart.cartItems.find(x => x._id === product._id)
     const quantity = exitsItem ? exitsItem.quantity + 1 : 1
@@ -63,9 +63,10 @@ const ProductScreen = () => {
     const { data } = await axios.get(`/api/products/${product._id}`)
     if (data.countInStock < quantity) {
       window.alert('Sorry product is out of stock')
-      return;
+      return
     }
-    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity} })
+    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+    navigate('/cart')
   }
 
   return (

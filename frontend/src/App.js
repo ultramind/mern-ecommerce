@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async'
 import { Store } from './Store'
 import { useContext } from 'react'
 import Badge from 'react-bootstrap/esm/Badge'
+import CartScreen from './screens/CartScreen'
 
 function App () {
   const { state } = useContext(Store)
@@ -22,11 +23,11 @@ function App () {
       </Helmet>
       <div className='d-flex flex-column site-container'>
         <header className='header'>
-          <Navbar bg='dark' variant='dark'>
+          <Navbar bg='dark' variant='dark' className='align-items-center'>
             <Container>
-              <linkContainer to='/'>
+              <Link to='/' style={{ textDecoration:'none' }}>
                 <Navbar.Brand>amazona</Navbar.Brand>
-              </linkContainer>
+              </Link>
               <Nav className='me-auto'>
                 <Link to='/cart' style={{ textDecoration:'none',color: 'gray' }}>
                   Cart 
@@ -45,6 +46,7 @@ function App () {
             <Routes>
               <Route path='/' element={<HomeScreen />} />
               <Route path='/product/:slug' element={<ProductScreen />} />
+              <Route path='/cart' element={<CartScreen />} />
             </Routes>
           </Container>
         </main>
