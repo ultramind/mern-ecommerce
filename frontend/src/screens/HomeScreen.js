@@ -1,10 +1,11 @@
-import React, { useReducer, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useReducer, useEffect } from 'react'
 import axios from 'axios'
 import logger from 'use-reducer-logger'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Product from '../components/Product';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Product from '../components/Product'
+import SpinnerBox from '../components/SpinnerBox'
+import MessageBox from '../components/MessageBox'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,8 +35,8 @@ const HomeScreen = () => {
       try {
         const result = await axios.get('api/products/')
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
-      } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: error.message })
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: err.message })
       }
     }
     fetchProducts()
@@ -46,9 +47,9 @@ const HomeScreen = () => {
       <h1>Featured Items</h1>
       <div className='products'>
         {loading ? (
-          <div>Loading...</div>
+          <SpinnerBox/>
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant='danger'> {error} </MessageBox>
         ) : (
           <Row>
             {products.map(product => (

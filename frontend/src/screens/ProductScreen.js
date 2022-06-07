@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Row from 'react-bootstrap/Row'
@@ -7,6 +7,10 @@ import Badge from 'react-bootstrap/Badge'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Rating from '../components/Rating'
 import { Helmet } from 'react-helmet-async'
+import SpinnerBox from '../components/SpinnerBox'
+import { getError } from '../utils.js'
+import MessageBox from '../components/MessageBox'
+import { Store } from '../Store'
 
 // creating a reducer function to handle the fetching one product
 const reducer = (state, action) => {
@@ -23,6 +27,9 @@ const reducer = (state, action) => {
 }
 
 const ProductScreen = () => {
+  // initializing contex
+  const { state, dispatch: ctxDispatch } = useContext(Store)
+
   const params = useParams()
   const { slug } = params
 
@@ -38,88 +45,103 @@ const ProductScreen = () => {
       try {
         const result = await axios.get(`/api/products/slug/${slug}`)
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
-      } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: error.data })
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
       }
     }
     fetchProduct()
   }, [slug])
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : error ? (
-    <div>{error}</div>
-  ) : (
+  // Add to cart function
+  const addToCart = () => {
+    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } })
+  }
+
+  return (
     <div className='mt-4'>
-      <Row>
-        <Helmet>
-          <title>{product.name}</title>
-        </Helmet>
-        <Col md={5}>
-          <img className='img-large' src={product.images} alt={product.name} />
-        </Col>
-        <Col md={4}>
-          <ListGroup variant='flush'>
-            <ListGroup.Item>
-              <h1>{product.name}</h1>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating reviews={product.numReviews} rating={product.rating} />
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col md={2}>
-                  <strong>Price: </strong>
-                </Col>
-                <Col md={10}>${product.price}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col md={5}>
-                  <strong>Description:</strong>
-                </Col>
-                <Col md={7}>{product.description}</Col>
-              </Row>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col md={3}>
-          <ListGroup>
-            <ListGroup.Item>
-              <Row>
-                <Col md={2}>
-                  <strong>Price: </strong>
-                </Col>
-                <Col md={10}>$ {product.price}</Col>
-              </Row>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Row>
-                <Col md={4}>
-                  <strong>Status:</strong>
-                </Col>
-                <Col md={8}>
-                  {product.countInStock > 0 ? (
-                    <Badge variant='success'>In stock</Badge>
-                  ) : (
-                    <Badge variant='danger'>Out of stock</Badge>
-                  )}
-                </Col>
-              </Row>
-            </ListGroup.Item>
-            {product.countInStock > 0 && (
+      {loading ? (
+        <SpinnerBox />
+      ) : error ? (
+        <MessageBox variant='danger'>{error}</MessageBox>
+      ) : (
+        <Row>
+          <Helmet>
+            <title>{product.name}</title>
+          </Helmet>
+          <Col md={5}>
+            <img
+              className='img-large'
+              src={product.images}
+              alt={product.name}
+            />
+          </Col>
+          <Col md={4}>
+            <ListGroup variant='flush'>
               <ListGroup.Item>
-                <div className='d-grid'>
-                  <button className='btn_primary' variant='primary'>
-                    Add to cart
-                  </button>
-                </div>
+                <h1>{product.name}</h1>
               </ListGroup.Item>
-            )}
-          </ListGroup>
-        </Col>
-      </Row>
+              <ListGroup.Item>
+                <Rating reviews={product.numReviews} rating={product.rating} />
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col md={2}>
+                    <strong>Price: </strong>
+                  </Col>
+                  <Col md={10}>${product.price}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col md={5}>
+                    <strong>Description:</strong>
+                  </Col>
+                  <Col md={7}>{product.description}</Col>
+                </Row>
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col md={3}>
+            <ListGroup>
+              <ListGroup.Item>
+                <Row>
+                  <Col md={2}>
+                    <strong>Price: </strong>
+                  </Col>
+                  <Col md={10}>$ {product.price}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col md={4}>
+                    <strong>Status:</strong>
+                  </Col>
+                  <Col md={8}>
+                    {product.countInStock > 0 ? (
+                      <Badge variant='success'>In stock</Badge>
+                    ) : (
+                      <Badge variant='danger'>Out of stock</Badge>
+                    )}
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              {product.countInStock > 0 && (
+                <ListGroup.Item>
+                  <div className='d-grid'>
+                    <button
+                      onClick={addToCart}
+                      className='btn_primary'
+                      variant='primary'
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </ListGroup.Item>
+              )}
+            </ListGroup>
+          </Col>
+        </Row>
+      )}
     </div>
   )
 }
