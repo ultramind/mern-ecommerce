@@ -29,6 +29,7 @@ const reducer = (state, action) => {
 const ProductScreen = () => {
   // initializing contex
   const { state, dispatch: ctxDispatch } = useContext(Store)
+  const { cart } = state
 
   const params = useParams()
   const { slug } = params
@@ -53,8 +54,18 @@ const ProductScreen = () => {
   }, [slug])
 
   // Add to cart function
-  const addToCart = () => {
-    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: 1 } })
+  const addToCart = async () => {
+  
+    // checnking if item exits
+    const exitsItem = cart.cartItems.find(x => x._id === product._id)
+    const quantity = exitsItem ? exitsItem.quantity + 1 : 1
+    // checking the item stock qty
+    const { data } = await axios.get(`/api/products/${product._id}`)
+    if (data.countInStock < quantity) {
+      window.alert('Sorry product is out of stock')
+      return;
+    }
+    ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity} })
   }
 
   return (

@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       name: 'Nike Slim shirt',
       slug: 'nike slim shirt',
       category: 'Shirts',
@@ -13,6 +14,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
+      _id: '2',
       name: 'Adidas Fit Pants',
       slug: 'adidas-fit-pants',
       category: 'Pants',
@@ -25,18 +27,20 @@ const data = {
       description: 'High quality shirt'
     },
     {
+      _id: '3',
       name: 'Plain Trousers',
       slug: 'plain-trousers',
       category: 'Trousers',
       images: '/images/p3.jpg',
       price: 200,
-      countInStock: 0,
+      countInStock: 1,
       brand: 'Boss',
       rating: 4.3,
       numReviews: 10,
       description: 'High quality shirt'
     },
     {
+      _id: '4',
       name: 'Kelvin Underwears',
       slug: 'kelvin-underwears',
       category: 'Underwears',
@@ -49,6 +53,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
+      _id: '5',
       name: 'BYC Pollo',
       slug: 'byc-pollo',
       category: 'pollo',
