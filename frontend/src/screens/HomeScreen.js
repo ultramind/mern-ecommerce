@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Product from '../components/Product'
 import SpinnerBox from '../components/SpinnerBox'
 import MessageBox from '../components/MessageBox'
+import { Store } from '../Store'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -29,6 +30,7 @@ const HomeScreen = () => {
     error: ''
   })
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       dispatch({ type: 'FETCH_REQUEST' })
@@ -47,7 +49,7 @@ const HomeScreen = () => {
       <h1>Featured Items</h1>
       <div className='products'>
         {loading ? (
-          <SpinnerBox/>
+          <SpinnerBox />
         ) : error ? (
           <MessageBox variant='danger'> {error} </MessageBox>
         ) : (
