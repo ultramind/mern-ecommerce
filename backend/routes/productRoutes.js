@@ -28,14 +28,19 @@ productRouter.get('/slug/:slug', async (req, res) => {
     res.status(404).send({ message: 'No product found' })
   }
 })
+
 // fetch indivual product by id
-productRouter.get('/api/products/:id', async (req, res) => {
-    const {id} = req.params;
-  const product = await Product.findById(id)
-  if (product) {
-    res.send(product)
-  } else {
-    res.status(404).send({ message: 'No product found' })
+productRouter.get('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const product = await Product.findById(id)
+    if (product) {
+      res.send(product)
+    } else {
+      res.status(404).send({ message: 'No product found' })
+    }
+  } catch (error) {
+    res.send(error.message)
   }
 })
 

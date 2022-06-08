@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useContext } from 'react'
 import Card from 'react-bootstrap/Card'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Store } from '../Store'
 import Rating from './Rating'
 
 const Product = ({ product }) => {
+  const navigate = useNavigate()
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const {
     cart: { cartItems }
@@ -22,6 +23,7 @@ const Product = ({ product }) => {
       return
     }
     ctxDispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
+    navigate('/cart')
   }
 
   // distruturing the product object

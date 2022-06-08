@@ -1,4 +1,19 @@
+import bcrypt from 'bcryptjs'
 const data = {
+  users: [
+    {
+      name: 'Akachukwu',
+      email: 'udechukwuakachukwu@gmail.com',
+      password: '$2y$10$Eckx5AMe6PrMeNfy/Bk0neUrvs5cKNnCnMIhWA2uC0PWblmphxStW',
+      isAdmin: true
+    },
+    {
+      name: 'Osas',
+      email: 'angelosas@gmail.com',
+      password: '$2y$10$Eckx5AMe6PrMeNfy/Bk0neUrvs5cKNnCnMIhWA2uC0PWblmphxStW',
+      isAdmin: false
+    }
+  ],
   products: [
     {
       // _id: '1',
