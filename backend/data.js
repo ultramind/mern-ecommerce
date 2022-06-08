@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: '1',
+      // _id: '1',
       name: 'Nike Slim shirt',
       slug: 'nike slim shirt',
       category: 'Shirts',
@@ -14,7 +14,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
-      _id: '2',
+      // _id: '2',
       name: 'Adidas Fit Pants',
       slug: 'adidas-fit-pants',
       category: 'Pants',
@@ -27,7 +27,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
-      _id: '3',
+      // _id: '3',
       name: 'Plain Trousers',
       slug: 'plain-trousers',
       category: 'Trousers',
@@ -40,7 +40,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
-      _id: '4',
+      // _id: '4',
       name: 'Kelvin Underwears',
       slug: 'kelvin-underwears',
       category: 'Underwears',
@@ -53,7 +53,7 @@ const data = {
       description: 'High quality shirt'
     },
     {
-      _id: '5',
+      // _id: '5',
       name: 'BYC Pollo',
       slug: 'byc-pollo',
       category: 'pollo',

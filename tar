@@ -1,0 +1,89 @@
+[33mcommit fa4a037d6b01675c7eb9a5631bad6e294e39d6ef[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Tue Jun 7 18:36:46 2022 +0100
+
+    Created the SignIn screen UI
+
+[33mcommit aebf779aa16df7c316d2a77e5ed904b9a7a3e781[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Tue Jun 7 18:07:43 2022 +0100
+
+    Completed all add to cart funtionalities (inc/dec/remove)
+
+[33mcommit 0ae118310632329ca355652edd067fd0ddfdc969[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Tue Jun 7 16:31:28 2022 +0100
+
+    Created the Shoping Cart Screen (UI)
+
+[33mcommit c40e561d93a52424417439764a33e28b360f4760[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Tue Jun 7 13:09:45 2022 +0100
+
+    Completed the add to cart functionality...
+
+[33mcommit bc929a9fe09703e6fb97256efa303de3c828c26f[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Tue Jun 7 10:55:39 2022 +0100
+
+    implemented add to cart (1) using context(Global state)
+
+[33mcommit 76ba941be435bc981890a106addf0c2b15161c62[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Mon Jun 6 11:32:51 2022 +0100
+
+    Implementing a dynamic page title using react-helmet-async
+
+[33mcommit 8eddc777c080c42ffe9e143372694023ca1966a5[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Mon Jun 6 11:25:01 2022 +0100
+
+    Done with the product details screen, also fetched data from backend
+
+[33mcommit 559eec4cef059896196ed09daaab452de1dff9b5[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sun Jun 5 07:38:20 2022 +0100
+
+    installed use bootstrap, react-bootstrap and react-router-bootstrap
+
+[33mcommit ef71553995a8e42994c3aeb066dac447b32ecc94[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sat Jun 4 11:14:44 2022 +0100
+
+    Modifying states useing useReducer Hook.
+
+[33mcommit e0589e7a579b4c48babf8c34a7e96d439951504e[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sat Jun 4 08:50:19 2022 +0100
+
+    Fetching data using axios, useState and useReducer
+
+[33mcommit 8eb60c6da4fbcacecf8be0b014fa44052c6bc10a[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sat Jun 4 08:25:07 2022 +0100
+
+    create backend and setting up the server
+
+[33mcommit d1b49018333b39d4eec762838588644efc5213e6[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sat Jun 4 07:07:32 2022 +0100
+
+    Adding Routes (react-router-dom)
+
+[33mcommit 04428c62eadfa4ae63054e35627e05969277f22a[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Sat Jun 4 01:57:43 2022 +0100
+
+    Just created the home page and rendered the products
+
+[33mcommit fd33b66d17acee327d3cac60457a6c67368417bf[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Fri Jun 3 21:13:33 2022 +0100
+
+    Create Git Repo
+
+[33mcommit d4b1934935041adac4a80a5c53af18ff40229313[m
+Author: ultragrace <udechukwuakachukwu.com>
+Date:   Fri Jun 3 21:11:30 2022 +0100
+
+    Creating React App

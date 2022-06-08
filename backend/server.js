@@ -1,30 +1,25 @@
 import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 import data from './data.js'
+import seedRouter from './routes/seedRoutes.js'
+import productRouter from './routes/productRoutes.js'
 
 const app = express()
+dotenv.config()
 
-app.get('/api/products/', (req, res) => {
-  res.send(data.products)
-})
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => console.log('DB connected...'))
+  .catch(err => console.log(err))
 
-// fetch all products
-app.get('/api/products/slug/:slug', (req, res) => {
-  const product = data.products.find(x => x.slug === req.params.slug)
-  if (product) {
-    res.send(product)
-  } else {
-    res.status(404).send({ message: 'No product found' })
-  }
-})
-// fetch indivual product
-app.get('/api/products/:id', (req, res) => {
-  const product = data.products.find(x => x._id === req.params.id)
-  if (product) {
-    res.send(product)
-  } else {
-    res.status(404).send({ message: 'No product found' })
-  }
-})
+// routes
+app.use('/api/seed/', seedRouter)
+app.use('/api/products/', productRouter)
+
+
+
+
 
 const port = process.env.PORT || 5000
 
