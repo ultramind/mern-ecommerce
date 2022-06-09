@@ -40,6 +40,8 @@ const SigninScreen = () => {
     } catch (error) {
       toast.error(getError(error))
     }
+    setEmail('')
+    setPassword('')
   }
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const SigninScreen = () => {
               <Form.Control
                 type='email'
                 required
+                value={email}
                 placeholder='Email Address'
                 onChange={e => setEmail(e.target.value)}
               />
@@ -72,6 +75,7 @@ const SigninScreen = () => {
                 type='password'
                 placeholder='Password'
                 required
+                value={password}
                 onChange={e => setPassword(e.target.value)}
               />
             </Form.Group>
