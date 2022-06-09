@@ -25,10 +25,10 @@ userRouter.post(
           })
           return
         } else {
-          res.status(401).send({ message: 'Wrong email or pasword1' })
+          res.status(401).send({ message: 'Wrong email or pasword' })
         }
       } else {
-        res.status(401).send({ message: 'Wrong email or pasword2' })
+        res.status(401).send({ message: 'Wrong email or pasword' })
       }
     } catch (error) {
       res.status(401).send(error)

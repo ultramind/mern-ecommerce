@@ -1,7 +1,11 @@
 // eslint-disable-next-line
 import './index.css'
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import { LinkContainer } from 'react-router-bootstrap'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import HomeScreen from './screens/HomeScreen'
@@ -14,8 +18,14 @@ import CartScreen from './screens/CartScreen'
 import SigninScreen from './screens/SigninScreen'
 
 function App () {
-  const { state } = useContext(Store)
-  const { cart } = state
+  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const { cart, userInfo } = state
+
+  // Singout function
+  const handleSignOut = () => {
+    ctxDispatch({ type: 'USER_SIGNOUT' })
+    localStorage.removeItem('userInfo')
+  }
 
   return (
     <BrowserRouter>
@@ -23,21 +33,47 @@ function App () {
         <title>Amazona</title>
       </Helmet>
       <div className='d-flex flex-column site-container'>
+      <ToastContainer position='top-right' limit={1} />
         <header className='header'>
           <Navbar bg='dark' variant='dark' className='align-items-center'>
             <Container>
-              <Link to='/' style={{ textDecoration:'none' }}>
+              <LinkContainer to='/'>
                 <Navbar.Brand>amazona</Navbar.Brand>
-              </Link>
+              </LinkContainer>
               <Nav className='me-auto'>
-                <Link to='/cart' style={{ textDecoration:'none',color: 'gray' }}>
-                  Cart 
+                <Link
+                  to='/cart'
+                  style={{ textDecoration: 'none', color: 'gray' }}
+                >
+                  Cart{' '}
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg='danger'>
-                      {cart.cartItems.reduce((a, c) => a+ c.quantity, 0)}
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                     </Badge>
                   )}
                 </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
+                    <LinkContainer to='/profile'>
+                      <NavDropdown.Item>User Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to='/history'>
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      to='#signout'
+                      onClick={handleSignOut}
+                      className='dropdown-item'
+                    >
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className='nav-link' to='/signin'>
+                    SignIn
+                  </Link>
+                )}
               </Nav>
             </Container>
           </Navbar>
