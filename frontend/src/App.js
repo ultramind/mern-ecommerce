@@ -18,6 +18,7 @@ import CartScreen from './screens/CartScreen'
 import SigninScreen from './screens/SigninScreen'
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
+import PaymentMethodScreen from './screens/PaymentMethodScreen';
 
 function App () {
   const { state, dispatch: ctxDispatch } = useContext(Store)
@@ -55,7 +56,7 @@ function App () {
                   )}
                 </Link>
                 {userInfo ? (
-                  <NavDropdown title={userInfo.name} id='basic-nav-dropdown'>
+                  <NavDropdown title={userInfo.name} id='basic-nav-dropdown' style={{ float:'right' }}>
                     <LinkContainer to='/profile'>
                       <NavDropdown.Item>User Profile</NavDropdown.Item>
                     </LinkContainer>
@@ -89,6 +90,7 @@ function App () {
               <Route path='/signup' element={<SignupScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/shipping' element={<ShippingAddressScreen />} />
+              <Route path='/payment-method' element={<PaymentMethodScreen />} />
             </Routes>
           </Container>
         </main>

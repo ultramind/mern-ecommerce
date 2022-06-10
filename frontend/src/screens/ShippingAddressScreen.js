@@ -55,7 +55,7 @@ const ShippingAddressScreen = () => {
       })
     )
 
-    navigate('/payment')
+    navigate('/payment-method')
   }
 
   return (

@@ -38,7 +38,7 @@ const SignupScreen = () => {
         password
       })
       // send to ourr global state
-      ctxDispatch({ type: 'USER_SIGNUP', payload: data })
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data })
       // save data into localStorage
       localStorage.setItem('userInfo', JSON.stringify(data))
       // navigate to the shipping
