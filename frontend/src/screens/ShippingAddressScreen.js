@@ -63,11 +63,12 @@ const ShippingAddressScreen = () => {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+      <CheckoutSteps step1 step2/>
       <div
         className='small-container'
         style={{ maxWidth: '600px', margin: '0 auto' }}
       >
-      <CheckoutSteps step1 step2/>
+      
         <h1>Shipping Address</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className='mb-3' controlId='fullname'>

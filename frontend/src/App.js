@@ -17,6 +17,7 @@ import Badge from 'react-bootstrap/esm/Badge'
 import CartScreen from './screens/CartScreen'
 import SigninScreen from './screens/SigninScreen'
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
+import SignupScreen from './screens/SignupScreen';
 
 function App () {
   const { state, dispatch: ctxDispatch } = useContext(Store)
@@ -44,7 +45,7 @@ function App () {
               <Nav className='me-auto'>
                 <Link
                   to='/cart'
-                  style={{ textDecoration: 'none', color: 'gray' }}
+                  style={{ textDecoration: 'none', color: 'gray', paddingTop:'.5rem' }}
                 >
                   Cart{' '}
                   {cart.cartItems.length > 0 && (
@@ -85,6 +86,7 @@ function App () {
               <Route path='/' element={<HomeScreen />} />
               <Route path='/product/:slug' element={<ProductScreen />} />
               <Route path='/cart' element={<CartScreen />} />
+              <Route path='/signup' element={<SignupScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
               <Route path='/shipping' element={<ShippingAddressScreen />} />
             </Routes>
