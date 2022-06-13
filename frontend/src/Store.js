@@ -12,8 +12,8 @@ const intitalState = {
       ? JSON.parse(localStorage.getItem('ShippingAddress'))
       : {},
     paymentMethod: localStorage.getItem('Payment-Method')
-    ? localStorage.getItem('Payment-Method')
-    : ''
+      ? localStorage.getItem('Payment-Method')
+      : ''
   },
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
@@ -41,6 +41,9 @@ const reducer = (state, action) => {
       localStorage.setItem('cartItems', JSON.stringify(cartItems))
       return { ...state, cart: { ...state.cart, cartItems } }
     }
+    // clear items in cart
+    case 'CLEAR CART':
+      return { ...state, cart: { ...state.cart, cartItems: [] } }
     // Signin case
     case 'USER_SIGNIN':
       return { ...state, userInfo: { ...state.userInfo, user: action.payload } }
@@ -59,8 +62,9 @@ const reducer = (state, action) => {
       }
     // adding payment method
     case 'PAYMENT_METHOD':
-      return{
-        ...state, cart: {...state.cart, paymentMethod: action.payload}
+      return {
+        ...state,
+        cart: { ...state.cart, paymentMethod: action.payload }
       }
     default:
       return state
