@@ -191,7 +191,7 @@ const PlaceOrderScreen = () => {
                       Proceed Order
                     </button>
                   </div>
-                  {loading && <SpinnerBox></SpinnerBox>}
+                  {loading && <SpinnerBox/>}
                 </ListGroup.Item>
               </ListGroup>
             </Card>

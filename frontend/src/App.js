@@ -20,6 +20,7 @@ import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import OrderScreen from './screens/OrderScreen';
 
 function App () {
   const { state, dispatch: ctxDispatch } = useContext(Store)
@@ -38,7 +39,7 @@ function App () {
       </Helmet>
       <div className='d-flex flex-column site-container'>
       <ToastContainer position='top-right' limit={1} />
-        <header className='header'>
+        <header className='header mb-2'>
           <Navbar bg='dark' variant='dark' className='align-items-center'>
             <Container>
               <LinkContainer to='/'>
@@ -93,6 +94,7 @@ function App () {
               <Route path='/shipping' element={<ShippingAddressScreen />} />
               <Route path='/payment-method' element={<PaymentMethodScreen />} />
               <Route path='/place-order' element={<PlaceOrderScreen />} />
+              <Route path='/place-order/order/:id' element={<OrderScreen />} />
             </Routes>
           </Container>
         </main>

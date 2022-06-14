@@ -27,5 +27,21 @@ orderRouter.post(
     } catch (error) {res.status(401).send(error)}
   })
 )
+// route to fetch order by Id
+orderRouter.get(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const order = await Order.findById(req.params.id);
+      if (order) {
+        res.status(200).send(order)
+      }else{
+        res.status(404).send({message: 'Order not found'});
+      }
+      res.status(201).send({ message: 'Order created', order })
+    } catch (error) {res.status(401).send(error)}
+  })
+)
 
 export default orderRouter

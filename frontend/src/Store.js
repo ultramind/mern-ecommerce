@@ -42,17 +42,30 @@ const reducer = (state, action) => {
       return { ...state, cart: { ...state.cart, cartItems } }
     }
     // clear items in cart
-    case 'CLEAR CART':
-      return { ...state, cart: { ...state.cart, cartItems: [] } }
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cartItems: [],
+          shippingAddress: {},
+          paymentMethod: ''
+        }
+      }
     // Signin case
     case 'USER_SIGNIN':
-      return { ...state, userInfo: { ...state.userInfo, user: action.payload } }
+      return { ...state, userInfo: action.payload }
 
     case 'USER_SIGNOUT':
       return {
         ...state,
         userInfo: null,
-        cart: { ...state.cart, cartItems: [], shippingAddress: {} }
+        cart: {
+          ...state.cart,
+          cartItems: [],
+          shippingAddress: {},
+          paymentMethod: ''
+        }
       }
 
     case 'ADD_SHIPPING_ADDRESS':
