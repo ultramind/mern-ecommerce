@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useReducer } from 'react'
 import Col from 'react-bootstrap/esm/Col'
 import Card from 'react-bootstrap/esm/Card'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import Button from 'react-bootstrap/esm/Button'
 import ListGroup from 'react-bootstrap/esm/ListGroup'
 import Row from 'react-bootstrap/esm/Row'
 import { Helmet } from 'react-helmet-async'
 import { Store } from '../Store'
 import MessageBox from '../components/MessageBox'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import Axios from 'axios'
 import { toast } from 'react-toastify'
 import { getError } from '../utils'
 import SpinnerBox from '../components/SpinnerBox'
@@ -41,7 +39,7 @@ const reducer = (state, action) => {
 const OrderScreen = () => {
   const { id: orderId } = useParams()
   const navigate = useNavigate()
-  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const { state } = useContext(Store)
   const { userInfo } = state
 
   const [
@@ -130,8 +128,6 @@ const OrderScreen = () => {
       loadPaypalScript()
     }
   }, [order, navigate, userInfo, orderId, paypalDispatch, successPay])
-
-  const placeOrderHandler = () => {}
 
   return loading ? (
     <SpinnerBox></SpinnerBox>

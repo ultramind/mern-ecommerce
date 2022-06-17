@@ -25,6 +25,25 @@ orderRouter.post(
     res.status(201).send({ message: 'Order created', order })
   })
 )
+
+// fetch user orders
+orderRouter.get(
+  '/mine',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const orders = await Order.find({ user: req.user._id })
+      if (orders) {
+        res.status(200).send(orders)
+      } else {
+        res.status(404).send({ message: 'Order not found' })
+      }
+    } catch (error) {
+      res.status(401).send(error)
+    }
+  })
+)
+
 // route to fetch order by Id
 orderRouter.get(
   '/:id',
@@ -37,7 +56,6 @@ orderRouter.get(
       } else {
         res.status(404).send({ message: 'Order not found' })
       }
-      res.status(201).send({ message: 'Order created', order })
     } catch (error) {
       res.status(401).send(error)
     }
