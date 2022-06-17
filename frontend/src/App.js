@@ -22,6 +22,7 @@ import PaymentMethodScreen from './screens/PaymentMethodScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
 import OrderHistoryScreen from './screens/OrderHistoryScreen'
+import ProfileScreen from './screens/ProfileScreen'
 
 function App () {
   const { state, dispatch: ctxDispatch } = useContext(Store)
@@ -31,6 +32,9 @@ function App () {
   const handleSignOut = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' })
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingAddress')
+    localStorage.removeItem('paymentMethod')
+    window.location.href = '/signin'
   }
 
   return (
@@ -41,7 +45,7 @@ function App () {
       <div className='d-flex flex-column site-container'>
         <ToastContainer position='top-right' limit={1} />
         <header className='header mb-2'>
-          <Navbar bg='dark' variant='dark'expand='lg'>
+          <Navbar bg='dark' variant='dark' expand='lg'>
             <Container>
               <LinkContainer to='/'>
                 <Navbar.Brand>WeBuy</Navbar.Brand>
@@ -103,6 +107,7 @@ function App () {
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/signup' element={<SignupScreen />} />
               <Route path='/signin' element={<SigninScreen />} />
+              <Route path='/profile' element={<ProfileScreen />} />
               <Route path='/shipping' element={<ShippingAddressScreen />} />
               <Route path='/payment-method' element={<PaymentMethodScreen />} />
               <Route path='/place-order' element={<PlaceOrderScreen />} />
