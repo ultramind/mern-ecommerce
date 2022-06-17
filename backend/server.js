@@ -32,6 +32,11 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message })
 })
 
+// fetch paypal client id
+app.get('/api/key/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
+})
+
 // server listing at port
 app.listen(port, () => {
   console.log(`Server up and runing on port: ${port}`)

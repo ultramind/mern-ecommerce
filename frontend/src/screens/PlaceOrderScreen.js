@@ -66,10 +66,12 @@ const PlaceOrderScreen = () => {
       dispatch({ type: 'REQUEST_SUCCESS' })
       // remove cartitem from localStroage
       localStorage.removeItem('cartItems')
-      navigate(`order/${data.order._id}`)
+      localStorage.removeItem('payment-method')
+      navigate(`/order/${data.order._id}`)
     } catch (err) {
       dispatch({ type: 'REQUEST_FAILED' })
       toast.error(getError(err))
+      return
     }
   }
 
@@ -191,7 +193,7 @@ const PlaceOrderScreen = () => {
                       Proceed Order
                     </button>
                   </div>
-                  {loading && <SpinnerBox/>}
+                  {loading && <SpinnerBox />}
                 </ListGroup.Item>
               </ListGroup>
             </Card>

@@ -35,7 +35,7 @@ function App () {
   return (
     <BrowserRouter>
       <Helmet>
-        <title>Amazona</title>
+        <title>WeBuy</title>
       </Helmet>
       <div className='d-flex flex-column site-container'>
       <ToastContainer position='top-right' limit={1} />
@@ -43,7 +43,7 @@ function App () {
           <Navbar bg='dark' variant='dark' className='align-items-center'>
             <Container>
               <LinkContainer to='/'>
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>WeBuy</Navbar.Brand>
               </LinkContainer>
               <Nav className='me-auto'>
                 <Link
@@ -94,7 +94,7 @@ function App () {
               <Route path='/shipping' element={<ShippingAddressScreen />} />
               <Route path='/payment-method' element={<PaymentMethodScreen />} />
               <Route path='/place-order' element={<PlaceOrderScreen />} />
-              <Route path='/place-order/order/:id' element={<OrderScreen />} />
+              <Route path='/order/:id' element={<OrderScreen />} />
             </Routes>
           </Container>
         </main>

@@ -21,10 +21,8 @@ orderRouter.post(
       totalPrice: req.body.totalPrice,
       user: req.user._id
     })
-    try {
-      const order = await newOrder.save()
-      res.status(201).send({ message: 'Order created', order })
-    } catch (error) {res.status(401).send(error)}
+    const order = await newOrder.save()
+    res.status(201).send({ message: 'Order created', order })
   })
 )
 // route to fetch order by Id
@@ -33,14 +31,39 @@ orderRouter.get(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id)
       if (order) {
         res.status(200).send(order)
-      }else{
-        res.status(404).send({message: 'Order not found'});
+      } else {
+        res.status(404).send({ message: 'Order not found' })
       }
       res.status(201).send({ message: 'Order created', order })
-    } catch (error) {res.status(401).send(error)}
+    } catch (error) {
+      res.status(401).send(error)
+    }
+  })
+)
+
+// update order info
+orderRouter.put(
+  '/:id/pay',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id)
+    if (order) {
+      order.isPaid = true
+      order.paidAt = Date.now()
+      order.paymentResult = {
+        id: req.body.id,
+        status: req.body.status,
+        update_time: req.body.update_time,
+        email_address: req.body.email_address
+      }
+      const updatedOrder = await order.save()
+      res.send({ message: 'Order Paid', order: updatedOrder })
+    } else {
+      res.status(402).send({ message: 'Order Not Found' })
+    }
   })
 )
 

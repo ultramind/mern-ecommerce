@@ -3,9 +3,9 @@ import mongoose from 'mongoose'
 const orderSchema = mongoose.Schema(
   {
     orderItems: [
-      { 
+      {
         name: { type: String, required: true },
-        slug: { type: String, required: true, unique: true },
+        slug: { type: String, required: true, unique: false},
         images: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
@@ -42,5 +42,5 @@ const orderSchema = mongoose.Schema(
   { timestamps: true }
 )
 
-const Order = mongoose.model('Order', orderSchema);
-export default Order;
+const Order = mongoose.model('Order', orderSchema)
+export default Order
