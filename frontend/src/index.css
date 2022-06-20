@@ -54,9 +54,8 @@ main h1 {
   color: #ffcc00;
 }
 
-.btn_primary {
+.btn_primary, .outline_primary {
   background-color: #f0c040;
-  outline: none;
   border: 1px;
   padding: 0.3rem 1rem;
   border-radius: 5px;
@@ -84,4 +83,26 @@ main h1 {
 .checkout-steps > div.active {
   border-bottom: 0.3rem solid #f08000;
   color: #f08000;
+}
+
+/* side bar Panel */
+.side-navbar{
+  width: 240px;
+  height: 100%;
+  left: -300px;
+  position: absolute;
+  transition: 0.5s;
+  background-color: #212529;
+}
+
+.site-container{
+  transition: .4s;
+}
+
+.active-cont{
+  margin-left: 240px;
+}
+
+.active-nav{
+  left: 0;
 }

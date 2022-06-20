@@ -1,4 +1,5 @@
 import express from 'express'
+import expressAsyncHandler from 'express-async-handler'
 import Product from '../models/ProductModel.js'
 
 const productRouter = express.Router()
@@ -28,6 +29,16 @@ productRouter.get('/slug/:slug', async (req, res) => {
     res.status(404).send({ message: 'No product found' })
   }
 })
+
+// fetch Categories
+productRouter.get(
+  '/categories',
+  expressAsyncHandler(async (req, res) => {
+    const categories = await Product.find().distinct('category')
+    res.send(categories)
+    console.log(categories)
+  })
+)
 
 // fetch indivual product by id
 productRouter.get('/:id', async (req, res) => {
