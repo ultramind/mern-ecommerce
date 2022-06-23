@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Rating = ({ rating, reviews }) => {
+const Rating = ({ rating, reviews, caption }) => {
   return (
     <div className='rating'>
       <span>
@@ -50,7 +50,11 @@ const Rating = ({ rating, reviews }) => {
           }
         />
       </span>
-      <span>{reviews} Reviews</span>
+      {caption ? (
+        <span>{caption}</span>
+      ) : (
+        <span>{' ' + reviews + 'reviews'}</span>
+      )}
     </div>
   )
 }
