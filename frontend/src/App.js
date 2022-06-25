@@ -29,7 +29,7 @@ import { getError } from './utils'
 import SearchBox from './components/SearchBox'
 import SearchScreen from './screens/SearchScreen'
 import ProtectedRoutes from './components/ProtectedRoutes'
-import AdminRoutes from './AdminRoutes'
+import AdminRoutes from './components/AdminRoutes'
 import DashboardScreen from './screens/DashboardScreen'
 
 function App () {

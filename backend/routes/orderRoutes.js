@@ -2,7 +2,7 @@ import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import Order from '../models/OrderModel.js'
 import User from '../models/UserModel.js'
-import { isAuth } from '../utils.js'
+import { isAdmin, isAuth } from '../utils.js'
 
 const orderRouter = express.Router()
 
@@ -23,6 +23,45 @@ orderRouter.post(
     })
     const order = await newOrder.save()
     res.status(201).send({ message: 'Order created', order })
+  })
+)
+
+// admin summarry
+orderRouter.get(
+  '/summary',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
+          numOrders: { $sum: 1 },
+          totalSales: { $sum: '$totalPrice' }
+        }
+      }
+    ])
+    // users
+    const users = await User.aggregate([
+      {
+        $group: {
+          _id: null,
+          numUsers: { $sum: 1 }
+        }
+      }
+    ])
+
+    const dailyOrders = await Order.aggregate([
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+          orders: { $sum: 1 },
+          sales: { $sum: '$totalPrice' }
+        }
+      },
+      { $sort: { _id: 1 } }
+    ])
+    res.send({ orders, users, dailyOrders })
   })
 )
 
