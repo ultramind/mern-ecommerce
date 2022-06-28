@@ -80,7 +80,7 @@ productRouter.get(
     const products = await Product.find({})
       .skip(pageSize * (page - 1))
       .limit(pageSize)
-    const countDoc = await Product.countDocuments()
+    const countProducts = await Product.countDocuments()
     res.send({
       products,
       countProducts,
