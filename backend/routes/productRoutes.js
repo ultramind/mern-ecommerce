@@ -1,6 +1,7 @@
 import express, { query } from 'express'
 import expressAsyncHandler from 'express-async-handler'
 import Product from '../models/ProductModel.js'
+import { isAuth, isAdmin } from '../utils.js'
 
 const productRouter = express.Router()
 
@@ -18,6 +19,29 @@ productRouter.get('/', async (req, res) => {
     res.status(401).send(error)
   }
 })
+
+// Create Product
+productRouter.post(
+  '/',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler((req, res) => {
+    const newProduct = new Product({
+      name: 'Sample Name' + Date.now(),
+      slug: 'Sample-Name' + Date.now(),
+      category: 'Sample Category',
+      images: '/images/p1.jpg',
+      price: 0,
+      countInStock: 0,
+      brand: 'Sample brand',
+      rating: 0,
+      numReviews: 0,
+      description: 'Sample description'
+    })
+    const product = newProduct.save()
+    res.send({ message: 'Product created', product })
+  })
+)
 
 // fetch all products by slug
 productRouter.get('/slug/:slug', async (req, res) => {
@@ -43,6 +67,29 @@ productRouter.get(
 // Fetch product by serach
 // search API
 const PAGE_SIZE = 3
+
+// fetch all products (isAdmin)
+productRouter.get(
+  '/admin',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const { query } = req
+    const page = query.page || 1
+    const pageSize = query.pageSize || PAGE_SIZE
+    const products = await Product.find({})
+      .skip(pageSize * (page - 1))
+      .limit(pageSize)
+    const countDoc = await Product.countDocuments()
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize)
+    })
+  })
+)
+
 productRouter.get(
   '/search',
   expressAsyncHandler(async (req, res) => {
