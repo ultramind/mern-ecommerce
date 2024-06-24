@@ -30,7 +30,6 @@ const HomeScreen = () => {
     error: ''
   })
 
-
   useEffect(() => {
     const fetchProducts = async () => {
       dispatch({ type: 'FETCH_REQUEST' })

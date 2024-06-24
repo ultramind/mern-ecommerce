@@ -4,13 +4,13 @@ const data = {
     {
       name: 'Akachukwu',
       email: 'udechukwuakachukwu@gmail.com',
-      password: '$2y$10$Eckx5AMe6PrMeNfy/Bk0neUrvs5cKNnCnMIhWA2uC0PWblmphxStW',
+      password: '$2a$10$SD3owQUyO0y/vOpo0K4Pa.C6jKKWZ.6lCJ5M9c.Qkkn99L4vwyIcG',
       isAdmin: true
     },
     {
       name: 'Osas',
       email: 'angelosas@gmail.com',
-      password: '$2y$10$Eckx5AMe6PrMeNfy/Bk0neUrvs5cKNnCnMIhWA2uC0PWblmphxStW',
+      password: '$2a$10$SD3owQUyO0y/vOpo0K4Pa.C6jKKWZ.6lCJ5M9c.Qkkn99L4vwyIcG',
       isAdmin: false
     }
   ],
